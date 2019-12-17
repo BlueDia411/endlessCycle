@@ -21,6 +21,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     
     public TblIncomeFrame(){
         initComponents();
+        this.setLocationRelativeTo(null);
 //        populateDataToTable();
     }
     

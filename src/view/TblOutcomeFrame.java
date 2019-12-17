@@ -16,6 +16,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
      */
     public TblOutcomeFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

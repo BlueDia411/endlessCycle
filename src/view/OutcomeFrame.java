@@ -6,6 +6,8 @@
 package view;
 
 import static controller.OutcomeController.submitOutcome;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import model.pojo.Outcome;
 
 /**
@@ -19,6 +21,7 @@ public class OutcomeFrame extends javax.swing.JFrame {
      */
     public OutcomeFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,12 +36,12 @@ public class OutcomeFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSubmitOutcome = new javax.swing.JButton();
         tfJumlahOutcome = new javax.swing.JTextField();
-        tfTanggalOutcome = new javax.swing.JTextField();
         tfKeteranganOutcome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBackOutcome = new javax.swing.JButton();
+        tfTanggalOutcome = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,12 +51,6 @@ public class OutcomeFrame extends javax.swing.JFrame {
         btnSubmitOutcome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitOutcomeActionPerformed(evt);
-            }
-        });
-
-        tfTanggalOutcome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTanggalOutcomeActionPerformed(evt);
             }
         });
 
@@ -96,10 +93,10 @@ public class OutcomeFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4))
                                 .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                    .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,9 +112,9 @@ public class OutcomeFrame extends javax.swing.JFrame {
                     .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -133,19 +130,15 @@ public class OutcomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitOutcomeActionPerformed
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
         String ket_outcome = tfKeteranganOutcome.getText();
-        String tgl_outcome = tfTanggalOutcome.getText();
+        String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
 
         Outcome Out = submitOutcome(jml_outcome, ket_outcome, tgl_outcome);
         new TblOutcomeFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSubmitOutcomeActionPerformed
-
-    private void tfTanggalOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTanggalOutcomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTanggalOutcomeActionPerformed
 
     private void tfKeteranganOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeteranganOutcomeActionPerformed
 
@@ -200,6 +193,6 @@ public class OutcomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField tfJumlahOutcome;
     private javax.swing.JTextField tfKeteranganOutcome;
-    private javax.swing.JTextField tfTanggalOutcome;
+    private com.toedter.calendar.JDateChooser tfTanggalOutcome;
     // End of variables declaration//GEN-END:variables
 }

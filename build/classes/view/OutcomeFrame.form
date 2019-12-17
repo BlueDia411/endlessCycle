@@ -41,10 +41,10 @@
                                   <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfTanggalOutcome" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                  <Component id="tfJumlahOutcome" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                  <Component id="tfKeteranganOutcome" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tfJumlahOutcome" alignment="0" pref="191" max="32767" attributes="0"/>
+                                  <Component id="tfKeteranganOutcome" alignment="0" pref="191" max="32767" attributes="0"/>
+                                  <Component id="tfTanggalOutcome" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -70,9 +70,9 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfTanggalOutcome" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfTanggalOutcome" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -105,11 +105,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfJumlahOutcome">
     </Component>
-    <Component class="javax.swing.JTextField" name="tfTanggalOutcome">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTanggalOutcomeActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="tfKeteranganOutcome">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfKeteranganOutcomeActionPerformed"/>
@@ -137,6 +132,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackOutcomeActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="tfTanggalOutcome">
     </Component>
   </SubComponents>
 </Form>
