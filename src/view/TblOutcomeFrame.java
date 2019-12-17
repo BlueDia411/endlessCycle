@@ -107,10 +107,25 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/home.png"))); // NOI18N
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
 
         incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/input-50x50.png"))); // NOI18N
+        incomeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incomeBtnActionPerformed(evt);
+            }
+        });
 
         outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/output-50x50.png"))); // NOI18N
+        outcomeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outcomeBtnActionPerformed(evt);
+            }
+        });
 
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/logout-50x50.png"))); // NOI18N
         logoutBtn.setToolTipText("");
@@ -132,10 +147,10 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(incomeBtn)
+            .addComponent(outcomeBtn)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(homeBtn)
-                .addComponent(incomeBtn)
-                .addComponent(outcomeBtn)
                 .addComponent(logoutBtn))
         );
 
@@ -230,6 +245,20 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         new OutcomeFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTambahOutcomeActionPerformed
+
+    private void incomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeBtnActionPerformed
+        new TblIncomeFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_incomeBtnActionPerformed
+
+    private void outcomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outcomeBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        new HomeFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,13 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/model/pojo/Income.java</file>
-            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/homeFrame.java</file>
-            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/tblIncomeFrame.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/controller/OutcomeController.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/model/pojo/Outcome.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/TblOutcomeFrame.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/controller/IncomeController.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/TblIncomeFrame.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/main/Main.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/OutcomeFrame.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/HomeFrame.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/IncomeFrame.java</file>
-            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/tblOutcomeFrame.java</file>
         </group>
     </open-files>
 </project-private>
