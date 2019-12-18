@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author BlueDia
@@ -248,7 +252,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahOutcomeActionPerformed
 
     private void incomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeBtnActionPerformed
-        new TblIncomeFrame().setVisible(true);
+        try {
+            new TblIncomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_incomeBtnActionPerformed
 

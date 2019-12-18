@@ -16,28 +16,10 @@ import java.util.logging.Logger;
  * @author BlueDia
  */
 public class Income {
+
     private int jml_income;
     private String ket_income;
     private String tgl_income;
-    
-    public void createKoneksi() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver ketemu");
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tubes", "root", "");
-            System.out.println("Koneksi berhasil");
-
-            Statement statement = conn.createStatement();
-            String sql ="INSERT INTO tubes.income (jml_income, ket_income, tgl_income) VALUES ('"+ jml_income +"', '"+ ket_income +"', '"+ tgl_income +"')";
-            statement.executeUpdate(sql);
-            
-            
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver tidak ketemu");
-        } catch (SQLException ex) {
-            Logger.getLogger(Income.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     /**
      * @return the jml_income
@@ -80,11 +62,15 @@ public class Income {
     public void setTgl_income(String tgl_income) {
         this.tgl_income = tgl_income;
     }
-    
-    public Income(int jml_income, String ket_income, String tgl_income){
+
+    public Income(int jml_income, String ket_income, String tgl_income) {
         this.jml_income = jml_income;
         this.ket_income = ket_income;
         this.tgl_income = tgl_income;
     }
-    
+
+    public Income() {
+
+    }
+
 }

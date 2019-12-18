@@ -5,6 +5,9 @@
  */
 package controller;
 
+import java.sql.SQLException;
+import java.util.List;
+import model.data.IncomeModel;
 import model.pojo.Income;
 import view.IncomeFrame;
 
@@ -13,21 +16,25 @@ import view.IncomeFrame;
  * @author BlueDia
  */
 public class IncomeController {
+
     IncomeFrame icFrame;
-    
-    public IncomeController(){
+
+    public IncomeController() {
         icFrame = new IncomeFrame();
     }
-    
-    public void start(){
+
+    public void start() {
         icFrame.setVisible(true);
     }
-    
-    public static Income submitIncome(int jml_income, String ket_income, String tgl_income){
-        Income inc = new Income(jml_income, ket_income, tgl_income);
-        inc.createKoneksi();
-        return inc;
+
+    public List<Income> loadIncome() throws SQLException {
+        IncomeModel model = new IncomeModel();
+        return model.loadIncomes();
     }
-    
-    
+
+    public int insert(Income income) throws SQLException {
+        IncomeModel model = new IncomeModel();
+        return model.save(income);
+    }
+
 }

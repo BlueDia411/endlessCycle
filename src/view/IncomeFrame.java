@@ -5,9 +5,13 @@
  */
 package view;
 
-import static controller.IncomeController.submitIncome;
+
+import controller.IncomeController;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.pojo.Income;
 
 /**
@@ -144,13 +148,22 @@ public class IncomeFrame extends javax.swing.JFrame {
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
 
-        Income inc = submitIncome(jml_income, ket_income, tgl_income);
-        new TblIncomeFrame().setVisible(true);
+        IncomeController incC = new IncomeController();
+        incC.insert(income);
+        try {
+            new TblIncomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(IncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnSubmitIncomeActionPerformed
 
     private void btnBackIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackIncomeActionPerformed
-        new TblIncomeFrame().setVisible(true);
+        try {
+            new TblIncomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(IncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_btnBackIncomeActionPerformed
 

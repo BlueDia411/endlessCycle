@@ -7,7 +7,11 @@ package view;
 
 import controller.IncomeController;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.pojo.Income;
 
 /**
  *
@@ -19,16 +23,16 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     private DefaultTableModel model;
     
     
-    public TblIncomeFrame(){
+    public TblIncomeFrame() throws SQLException{
         initComponents();
         this.setLocationRelativeTo(null);
-//        populateDataToTable();
+        populateDataToTable();
     }
     
-//    public void populateDataToTable() throws SQLException{
-//        model = (DefaultTableModel) tblIncome.getModel();
-//        list<Income> inco = conn.load;
-//    }
+    public void populateDataToTable() throws SQLException{
+        model = (DefaultTableModel) tblIncome.getModel();
+        List<Income> inco = conn.loadIncome();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,7 +262,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TblIncomeFrame().setVisible(true);
+                try {
+                    new TblIncomeFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
