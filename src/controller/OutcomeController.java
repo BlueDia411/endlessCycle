@@ -5,6 +5,9 @@
  */
 package controller;
 
+import java.sql.SQLException;
+import java.util.List;
+import model.data.OutcomeModel;
 import model.pojo.Outcome;
 import view.OutcomeFrame;
 
@@ -23,9 +26,13 @@ public class OutcomeController {
         outFrame.setVisible(true);
     }
     
+    public List<Outcome> loadOutcome() throws SQLException {
+        OutcomeModel model = new OutcomeModel();
+        return model.loadOutcomes();
+    }
+    
     public static Outcome submitOutcome(int jml_outcome, String ket_outcome, String tgl_outcome){
         Outcome Out = new Outcome(jml_outcome, ket_outcome, tgl_outcome);
-        Out.createKoneksi();
         return Out;
     }
     

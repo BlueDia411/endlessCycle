@@ -5,9 +5,16 @@
  */
 package view;
 
+import controller.OutcomeController;
+import static controller.OutcomeController.submitOutcome;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import model.pojo.Outcome;
 
 /**
  *
@@ -15,12 +22,36 @@ import java.util.logging.Logger;
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
 
+    OutcomeController conn = new OutcomeController();
+    private DefaultTableModel model;
+
     /**
      * Creates new form tblIncomeFrame
      */
-    public TblOutcomeFrame() {
+    public TblOutcomeFrame() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        populateDataToTable();
+    }
+
+    public void populateDataToTable() throws SQLException {
+        model = (DefaultTableModel) tblOutcome.getModel();
+        List<Outcome> ouc = conn.loadOutcome();
+        int i = 1;
+        for (Outcome oc : ouc) {
+            Object[] row = new Object[4];
+            row[0] = i++;
+            row[1] = oc.getTgl_outcome();
+            row[2] = oc.getJml_outcome();
+            row[3] = oc.getKet_outcome();
+            model.addRow(row);
+        }
+    }
+
+    public void refreshTable() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
+        model.setRowCount(0);
+        populateDataToTable();
     }
 
     /**
@@ -37,18 +68,24 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOutcome = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         homeBtn = new javax.swing.JButton();
         incomeBtn = new javax.swing.JButton();
         outcomeBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
-        btnTambahOutcome = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblTotalOutcome = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        tfJumlahOutcome = new javax.swing.JTextField();
+        tfKeteranganOutcome = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tfTanggalOutcome = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        btnSubmitOutcome = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -96,18 +133,15 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOutcome.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "No", "Code", "Tanggal", "Jumlah", "Keterangan", "Aksi"
+                "No", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblOutcome);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -159,15 +193,6 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                 .addComponent(logoutBtn))
         );
 
-        btnTambahOutcome.setText("+ Tambah");
-        btnTambahOutcome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahOutcomeActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Data Outcome");
-
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -212,31 +237,77 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tfKeteranganOutcome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfKeteranganOutcomeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Jumlah :");
+
+        jLabel6.setText("Tanggal :");
+
+        jLabel7.setText("Keterangan :");
+
+        jLabel8.setText("Tambah Outcome");
+
+        btnSubmitOutcome.setText("+ Tambah");
+        btnSubmitOutcome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitOutcomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambahOutcome)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfJumlahOutcome)
+                            .addComponent(tfKeteranganOutcome)
+                            .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSubmitOutcome)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambahOutcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfKeteranganOutcome)
+                        .addComponent(btnSubmitOutcome)))
+                .addGap(77, 77, 77)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,11 +316,6 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTambahOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahOutcomeActionPerformed
-        new OutcomeFrame().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnTambahOutcomeActionPerformed
 
     private void incomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeBtnActionPerformed
         try {
@@ -268,6 +334,19 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         new HomeFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void tfKeteranganOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeteranganOutcomeActionPerformed
+
+    }//GEN-LAST:event_tfKeteranganOutcomeActionPerformed
+
+    private void btnSubmitOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitOutcomeActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+        String ket_outcome = tfKeteranganOutcome.getText();
+        String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
+
+        Outcome Out = submitOutcome(jml_outcome, ket_outcome, tgl_outcome);
+    }//GEN-LAST:event_btnSubmitOutcomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,28 +381,38 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TblOutcomeFrame().setVisible(true);
+                try {
+                    new TblOutcomeFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTambahOutcome;
+    private javax.swing.JButton btnSubmitOutcome;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton incomeBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTotalOutcome;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton outcomeBtn;
+    private javax.swing.JTable tblOutcome;
+    private javax.swing.JTextField tfJumlahOutcome;
+    private javax.swing.JTextField tfKeteranganOutcome;
+    private com.toedter.calendar.JDateChooser tfTanggalOutcome;
     // End of variables declaration//GEN-END:variables
 }

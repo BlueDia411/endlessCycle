@@ -19,25 +19,6 @@ public class Outcome {
     private int jml_outcome;
     private String ket_outcome;
     private String tgl_outcome;
-    
-    public void createKoneksi() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver ketemu");
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tubes", "root", "");
-            System.out.println("Koneksi berhasil");
-
-            Statement statement = conn.createStatement();
-            String sql ="INSERT INTO tubes.outcome (jml_outcome, ket_outcome, tgl_outcome) VALUES ('"+ jml_outcome +"', '"+ ket_outcome +"', '"+ tgl_outcome +"')";
-            statement.executeUpdate(sql);
-            
-            
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver tidak ketemu");
-        } catch (SQLException ex) {
-            Logger.getLogger(Income.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     /**
      * @return the jml_outcome
@@ -77,7 +58,7 @@ public class Outcome {
     /**
      * @param tgl_outcome the tgl_outcome to set
      */
-    public void setTgl_outcome(String tgl_outcomecome) {
+    public void setTgl_outcome(String tgl_outcome) {
         this.tgl_outcome = tgl_outcome;
     }
     
@@ -85,5 +66,9 @@ public class Outcome {
         this.jml_outcome = jml_outcome;
         this.ket_outcome = ket_outcome;
         this.tgl_outcome = tgl_outcome;
+    }
+    
+    public Outcome() {
+
     }
 }
