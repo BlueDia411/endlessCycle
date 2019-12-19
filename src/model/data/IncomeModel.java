@@ -26,11 +26,11 @@ public class IncomeModel {
         Connection conn = DatabaseUtilities.getConnection();
         try {
             Statement state = conn.createStatement();
-            ResultSet rs = state.executeQuery("SELECT * FROM mahasiswa");
+            ResultSet rs = state.executeQuery("SELECT * FROM income");
             incList = new ArrayList<>();
             while (rs.next()) {
                 Income inc = new Income();
-                inc.setJml_income(Integer.valueOf(rs.getString("jm;_incom")));
+                inc.setJml_income(Integer.valueOf(rs.getString("jml_income")));
                 inc.setKet_income(rs.getString("ket_income"));
                 inc.setTgl_income(rs.getString("tgl_income"));
 

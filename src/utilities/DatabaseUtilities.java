@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DatabaseUtilities {
         public static Connection getConnection(){
-        return getConnection("jdbc:mysql://localhost/akademik411", "root", "");
+        return getConnection("jdbc:mysql://localhost/tubes", "root", "");
     }
     
     private static Connection getConnection(String url, String user, String Pass){
