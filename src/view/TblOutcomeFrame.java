@@ -21,7 +21,7 @@ import model.pojo.Outcome;
  * @author BlueDia
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
-
+    
     OutcomeController conn = new OutcomeController();
     private DefaultTableModel model;
 
@@ -33,7 +33,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         populateDataToTable();
     }
-
+    
     public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblOutcome.getModel();
         List<Outcome> ouc = conn.loadOutcome();
@@ -47,7 +47,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-
+    
     public void refreshTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
         model.setRowCount(0);
@@ -168,6 +168,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/logout-50x50.png"))); // NOI18N
         logoutBtn.setToolTipText("");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -344,9 +349,14 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
         String ket_outcome = tfKeteranganOutcome.getText();
         String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
-
+        
         Outcome Out = submitOutcome(jml_outcome, ket_outcome, tgl_outcome);
     }//GEN-LAST:event_btnSubmitOutcomeActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

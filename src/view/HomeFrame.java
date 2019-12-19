@@ -82,6 +82,11 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/logout-50x50.png"))); // NOI18N
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -324,9 +329,18 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_incomeBtnActionPerformed
 
     private void outcomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeBtnActionPerformed
-        new TblOutcomeFrame().setVisible(true);
+        try {
+            new TblOutcomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_outcomeBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

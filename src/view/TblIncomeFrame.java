@@ -20,20 +20,34 @@ import model.pojo.Income;
  * @author BlueDia
  */
 public class TblIncomeFrame extends javax.swing.JFrame {
-
+    
     IncomeController conn = new IncomeController();
     private DefaultTableModel model;
     
-    
-    public TblIncomeFrame() throws SQLException{
+    public TblIncomeFrame() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         populateDataToTable();
     }
     
-    public void populateDataToTable() throws SQLException{
+    public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblIncome.getModel();
         List<Income> inco = conn.loadIncome();
+        int i = 1;
+        for (Income income : inco) {
+            Object[] row = new Object[4];
+            row[0] = i++;
+            row[1] = income.getTgl_income();
+            row[2] = income.getJml_income();
+            row[3] = income.getKet_income();
+            model.addRow(row);
+        }
+    }
+    
+    public void refreshTable() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
+        model.setRowCount(0);
+        populateDataToTable();
     }
 
     /**
@@ -81,13 +95,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
         tblIncome.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "No", "Code", "Tanggal", "Jumlah", "Keterangan", "Aksi"
+                "No", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
         jScrollPane1.setViewportView(tblIncome);
@@ -155,6 +166,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         });
 
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/logout-50x50.png"))); // NOI18N
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -262,7 +278,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void outcomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outcomeBtnActionPerformed
-        new TblOutcomeFrame().setVisible(true);
+        try {
+            new TblOutcomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_outcomeBtnActionPerformed
 
@@ -275,17 +295,21 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         int jml_income = Integer.parseInt(tfJumlahIncome.getText());
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
-
+        
         IncomeController incC = new IncomeController();
         try {
             incC.insert(new Income(jml_income, ket_income, tgl_income));
         } catch (SQLException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }//GEN-LAST:event_btnSubmitIncomeActionPerformed
 
-    
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */

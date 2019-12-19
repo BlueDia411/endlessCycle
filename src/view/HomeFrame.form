@@ -118,6 +118,9 @@
               <Image iconType="3" name="/assetsNetbean/logout-50x50.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
