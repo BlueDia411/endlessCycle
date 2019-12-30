@@ -9,22 +9,12 @@ import java.sql.SQLException;
 import java.util.List;
 import model.data.OutcomeModel;
 import model.pojo.Outcome;
-//import view.OutcomeFrame;
 
 /**
  *
  * @author BlueDia
  */
 public class OutcomeController {
-//    OutcomeFrame outFrame;
-//    
-//    public OutcomeController(){
-//        outFrame = new OutcomeFrame();
-//    }
-//    
-//    public void start(){
-//        outFrame.setVisible(true);
-//    }
     
     public List<Outcome> loadOutcome() throws SQLException {
         OutcomeModel model = new OutcomeModel();
