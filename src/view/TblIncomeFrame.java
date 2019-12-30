@@ -83,8 +83,8 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnUbahIncome = new javax.swing.JButton();
-        tfTanggalIncome = new com.toedter.calendar.JDateChooser();
         btnHapus = new javax.swing.JButton();
+        tfTanggalIncome = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -278,14 +278,15 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5))
                     .addComponent(tfTanggalIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -365,19 +366,17 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
     private void tblIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIncomeMouseClicked
 
-       try {
-            DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
-            int seclectedIndex = tblIncome.getSelectedRow();
-            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(seclectedIndex, 1));
-            tfTanggalIncome.setDate(date);
-            
-            
-            tfJumlahIncome.setText(model.getValueAt(seclectedIndex, 2).toString());
-            tfKeteranganIncome.setText(model.getValueAt(seclectedIndex, 3).toString());
+        try {
+        DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
+        int selectedIndex = tblIncome.getSelectedRow();
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 1));
+        tfTanggalIncome.setDate(date);
+        
+        tfJumlahIncome.setText(model.getValueAt(selectedIndex, 2).toString());
+        tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 3).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+    }                                      
 
     }//GEN-LAST:event_tblIncomeMouseClicked
 
@@ -406,7 +405,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -420,14 +419,16 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -435,13 +436,14 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TblIncomeFrame().setVisible(true);
+                    new TblOutcomeFrame().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
+    
 
     public void saldoAkhirPemasukan() throws SQLException {
         List<Income> inc = conn.loadIncome();

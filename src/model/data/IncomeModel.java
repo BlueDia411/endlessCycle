@@ -6,12 +6,15 @@
 package model.data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import model.pojo.Income;
 import utilities.DatabaseUtilities;
 
@@ -77,7 +80,6 @@ public class IncomeModel {
         }
     }
 
-     
      public int delete(Income inc) throws SQLException{
          Connection con = DatabaseUtilities.getConnection();
           try{
@@ -90,5 +92,4 @@ public class IncomeModel {
               }
           }
      }
-    
 }

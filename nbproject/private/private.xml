@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/view/TblIncomeFrame.java</file>
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/model/data/IncomeModel.java</file>
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/utilities/DatabaseUtilities.java</file>
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/controller/IncomeController.java</file>
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/view/TblOutcomeFrame.java</file>
             <file>file:/C:/Users/YOGASWARA%20INDRA/Desktop/endlessCycle-master/endlessCycle/src/model/pojo/Income.java</file>
+=======
+            <file>file:/C:/Users/Rezza%20Muhammad/Documents/NetBeansProjects/endlessCycle/src/view/TblIncomeFrame.java</file>
+            <file>file:/C:/Users/Rezza%20Muhammad/Documents/NetBeansProjects/endlessCycle/src/model/data/IncomeModel.java</file>
+            <file>file:/C:/Users/Rezza%20Muhammad/Documents/NetBeansProjects/endlessCycle/src/main/Main.java</file>
+            <file>file:/C:/Users/Rezza%20Muhammad/Documents/NetBeansProjects/endlessCycle/src/model/data/OutcomeModel.java</file>
+>>>>>>> bdbcb750def7a9bbf6da2d2f3198d9f1c3563439
         </group>
     </open-files>
 </project-private>
