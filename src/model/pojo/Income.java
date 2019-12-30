@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.pojo.Income;
 
 /**
  *
@@ -25,7 +26,17 @@ public class Income {
     private String ket_income;
     private String tgl_income;
 
+    
+    public Income() {
 
+    }
+    
+     public Income(int jml_income,  String ket_income, String tgl_income, int code_income) {
+        this.code_income = code_income; 
+        this.jml_income = jml_income;
+        this.ket_income = ket_income;
+        this.tgl_income = tgl_income;
+    }
     /**
      * @return the jml_income
      */
@@ -78,17 +89,6 @@ public class Income {
 
     public int getCode_income() {
         return code_income;
-    }
-
-    public Income(int jml_income, String ket_income, String tgl_income) {
-        this.code_income = code_income;
-        this.jml_income = jml_income;
-        this.ket_income = ket_income;
-        this.tgl_income = tgl_income;
-    }
-
-    public Income() {
-
     }
 
 }

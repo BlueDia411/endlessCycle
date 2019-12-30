@@ -71,10 +71,11 @@ public class Outcome {
         this.tgl_outcome = tgl_outcome;
     }
     
-    public Outcome(int jml_outcome, String ket_outcome, String tgl_outcome){
+    public Outcome(int jml_outcome, String ket_outcome, String tgl_outcome, int code_outcome){
         this.jml_outcome = jml_outcome;
         this.ket_outcome = ket_outcome;
         this.tgl_outcome = tgl_outcome;
+        this.code_outcome = code_outcome;
     }
     
     public Outcome() {

@@ -6,17 +6,15 @@
 package model.data;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import model.pojo.Income;
 import utilities.DatabaseUtilities;
+import java.sql.Date;
 
 /**
  *
@@ -65,32 +63,33 @@ public class IncomeModel {
     }
 
     public int update(Income inc) throws SQLException {
-        Connection con = DatabaseUtilities.getConnection();
+        Connection conn = DatabaseUtilities.getConnection();
         try {
-            PreparedStatement stat = con.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE code_income = ?");
+            PreparedStatement stat = conn.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE code_income = ? ");
             stat.setInt(1, inc.getJml_income());
             stat.setString(2, inc.getKet_income());
-            stat.setString(3, inc.getTgl_income());
+            stat.setDate(3, java.sql.Date.valueOf(inc.getTgl_income()));
             stat.setInt(4, inc.getCode_income());
             return stat.executeUpdate();
         } finally {
-            if (con != null) {
-                con.close();
+            if (conn != null) {
+                conn.close();
             }
 
         }
     }
 
-     public int delete(Income inc) throws SQLException{
-         Connection con = DatabaseUtilities.getConnection();
-          try{
-          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE jml_income ='"  + inc.getJml_income()+ "'");
-          return stat.executeUpdate();
-     
-          }finally{
-              if(con != null){
-                  con.close();
-              }
-          }
-     }
+        public int delete(Income inc) throws SQLException {
+         Connection conn = DatabaseUtilities.getConnection();
+        try{
+            PreparedStatement stat = conn.prepareStatement("DELETE FROM Income WHERE code_income = ?");
+            stat.setInt(1, inc.getCode_income());
+            return stat.executeUpdate();
+        }finally{
+            if (conn !=null){
+                conn.close();
+            }
+            
+        }
+    }
 }

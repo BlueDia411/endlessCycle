@@ -16,15 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.pojo.Income;
 import model.pojo.Outcome;
+
 
 /**
  *
  * @author BlueDia
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
-
+    
     OutcomeController conn = new OutcomeController();
     private DefaultTableModel model;
 
@@ -54,6 +54,9 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }
 
     public void refreshTable() throws SQLException {
+        tfJumlahOutcome.setText("");
+        tfCodeOutcome.setText("");
+        tfKeteranganOutcome.setText("");
         DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
         model.setRowCount(0);
         populateDataToTable();
@@ -92,6 +95,8 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         btnSubmitOutcome = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         tfTanggalOutcome = new com.toedter.calendar.JDateChooser();
+        tfCodeOutcome = new javax.swing.JTextField();
+        btnUbahOutcome = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -144,7 +149,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Title 2", "Tanggal", "Jumlah", "Keterangan"
+                "No", "Kode transaksi", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
         tblOutcome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,6 +286,15 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             }
         });
 
+        tfCodeOutcome.setBackground(new java.awt.Color(240, 240, 240));
+
+        btnUbahOutcome.setText("Ubah");
+        btnUbahOutcome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahOutcomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -292,55 +306,76 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(tfKeteranganOutcome)
-                            .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSubmitOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSubmitOutcome)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUbahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel6)))
+                                    .addComponent(jLabel7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tfKeteranganOutcome)
+                                            .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tfKeteranganOutcome)
-                                .addComponent(btnSubmitOutcome)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnHapus)
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmitOutcome)
+                    .addComponent(btnUbahOutcome)
+                    .addComponent(btnHapus))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -373,17 +408,30 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tfKeteranganOutcomeActionPerformed
 
     private void btnSubmitOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitOutcomeActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
-        String ket_outcome = tfKeteranganOutcome.getText();
-        String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
+        if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {
+        
+            int status = 0;
+   
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+            String ket_outcome = tfKeteranganOutcome.getText();
+            String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
+            int code_outcome = Integer.parseInt(tfJumlahOutcome.getText());
 
-        OutcomeController outC = new OutcomeController();
-        try {
-            outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome));
-            refreshTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+            OutcomeController outC = new OutcomeController();
+            try {
+                status = outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome, code_outcome));
+                refreshTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(status == 1){
+                JOptionPane.showMessageDialog(this, "Data outcome berhasil ditambahkan");
+            } else {
+                JOptionPane.showMessageDialog(this, "Data outcome gagal ditambahkan");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Masukan data outcome terlebih dahulu");
         }
 
 
@@ -395,39 +443,70 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-         int status = 0;
-        
-           try{
-            DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
-            status = conn.delete(new Outcome(Integer.parseInt(tfJumlahOutcome.getText()) ,
-                    String.valueOf(tfTanggalOutcome.getDate()), 
-                    tfKeteranganOutcome.getText()));
-            refreshTable();
-        }catch (SQLException ex){
-          Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null , ex);
-//            System.err.println("Gsgsl Hapus");
+        if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {  
+            int status = 0;
+
+               try{
+                DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
+                status = conn.delete(new Outcome(Integer.parseInt(tfJumlahOutcome.getText()) ,
+                        String.valueOf(tfTanggalOutcome.getDate()), 
+                        tfKeteranganOutcome.getText(), Integer.parseInt(tfCodeOutcome.getText())));
+                refreshTable();
+            }catch (SQLException ex){
+              Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null , ex);
+    //            System.err.println("Gsgsl Hapus");
+            }
+            if(status == 1){
+                JOptionPane.showMessageDialog(this, "Data outcome berhasil di hapus");
+            } else {
+                JOptionPane.showMessageDialog(this, "Data outcome gagal dihapus");
+            }
+         } else {
+            JOptionPane.showMessageDialog(null, "Pilih data outcome yang ingin dihapus!");
         }
-        if(status == 1){
-            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus");
-        } else {
-            JOptionPane.showMessageDialog(this, "Data Gagal Dihapus");
-        }// TODO add your handling code here:
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void tblOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOutcomeMouseClicked
          try {
             DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
-            int seclectedIndex = tblOutcome.getSelectedRow();
-            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(seclectedIndex, 2));
+            int selectedIndex = tblOutcome.getSelectedRow();
+            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 2));
             tfTanggalOutcome.setDate(date);
-            
-            
-            tfJumlahOutcome.setText(model.getValueAt(seclectedIndex, 3).toString());
-            tfKeteranganOutcome.setText(model.getValueAt(seclectedIndex, 4).toString());
+            tfCodeOutcome.setText(model.getValueAt(selectedIndex, 1).toString());
+            tfJumlahOutcome.setText(model.getValueAt(selectedIndex, 3).toString());
+            tfKeteranganOutcome.setText(model.getValueAt(selectedIndex, 4).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tblOutcomeMouseClicked
+
+    private void btnUbahOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahOutcomeActionPerformed
+        if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {
+        
+            int status = 0;
+   
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+            String ket_outcome = tfKeteranganOutcome.getText();
+            String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
+            int code_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+
+            OutcomeController outC = new OutcomeController();
+            try {
+                status = outC.update(new Outcome(jml_outcome, ket_outcome, tgl_outcome, code_outcome));
+                refreshTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(status == 1){
+                JOptionPane.showMessageDialog(this, "Data outcome berhasil diubah");
+            } else {
+                JOptionPane.showMessageDialog(this, "Data outcome gagal diubah");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih data outcome yang ingin diubah!");
+        }
+    }//GEN-LAST:event_btnUbahOutcomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,6 +563,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSubmitOutcome;
+    private javax.swing.JButton btnUbahOutcome;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton incomeBtn;
     private javax.swing.JLabel jLabel2;
@@ -503,6 +583,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton outcomeBtn;
     private javax.swing.JTable tblOutcome;
+    private javax.swing.JTextField tfCodeOutcome;
     private javax.swing.JTextField tfJumlahOutcome;
     private javax.swing.JTextField tfKeteranganOutcome;
     private com.toedter.calendar.JDateChooser tfTanggalOutcome;

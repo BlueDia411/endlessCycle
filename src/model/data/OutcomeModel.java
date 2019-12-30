@@ -12,9 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.pojo.Income;
 import model.pojo.Outcome;
 import utilities.DatabaseUtilities;
+import java.sql.Date;
+
 
 /**
  *
@@ -62,16 +63,34 @@ public class OutcomeModel {
         }
     }
     
-    public int delete(Outcome ouc) throws SQLException{
-         Connection con = DatabaseUtilities.getConnection();
-          try{
-          PreparedStatement stat = con.prepareStatement("DELETE FROM outcome WHERE jml_outcome ='"  + ouc.getJml_outcome()+ "'");
-          return stat.executeUpdate();
-     
-          }finally{
-              if(con != null){
-                  con.close();
-              }
-          }
-     }
+    public int update(Outcome ouc) throws SQLException {
+        Connection conn = DatabaseUtilities.getConnection();
+        try {
+            PreparedStatement stat = conn.prepareStatement("UPDATE outcome SET jml_outcome = ?, ket_outcome = ?, tgl_outcome = ? WHERE code_outcome = ? ");
+            stat.setInt(1, ouc.getJml_outcome());
+            stat.setString(2, ouc.getKet_outcome());
+            stat.setDate(3, java.sql.Date.valueOf(ouc.getTgl_outcome()));
+            stat.setInt(4, ouc.getCode_outcome());
+            return stat.executeUpdate();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+    }
+
+        public int delete(Outcome ouc) throws SQLException {
+         Connection conn = DatabaseUtilities.getConnection();
+        try{
+            PreparedStatement stat = conn.prepareStatement("DELETE FROM outcome WHERE code_outcome = ?");
+            stat.setInt(1, ouc.getCode_outcome());
+            return stat.executeUpdate();
+        }finally{
+            if (conn !=null){
+                conn.close();
+            }
+            
+        }
+    }
 }
