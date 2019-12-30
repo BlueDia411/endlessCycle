@@ -31,6 +31,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         populateDataToTable();
+        saldoAkhirPengeluaran();
     }
 
     public void populateDataToTable() throws SQLException {
@@ -351,7 +352,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
         String ket_outcome = tfKeteranganOutcome.getText();
         String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
-        
+
         OutcomeController outC = new OutcomeController();
         try {
             outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome));
@@ -409,6 +410,16 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             }
         });
     }
+
+    public void saldoAkhirPengeluaran() throws SQLException {
+        List<Outcome> ouc = conn.loadOutcome();
+        int ina = 0;
+        for (Outcome outc : ouc) {
+            ina += outc.getJml_outcome();
+        }
+        lblTotalOutcome.setText("Rp." + String.valueOf(ina));
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmitOutcome;
