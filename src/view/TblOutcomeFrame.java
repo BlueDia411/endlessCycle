@@ -6,7 +6,6 @@
 package view;
 
 import controller.OutcomeController;
-import static controller.OutcomeController.submitOutcome;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,7 +20,7 @@ import model.pojo.Outcome;
  * @author BlueDia
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
-    
+
     OutcomeController conn = new OutcomeController();
     private DefaultTableModel model;
 
@@ -33,7 +32,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         populateDataToTable();
     }
-    
+
     public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblOutcome.getModel();
         List<Outcome> ouc = conn.loadOutcome();
@@ -47,7 +46,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-    
+
     public void refreshTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
         model.setRowCount(0);
@@ -350,7 +349,15 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         String ket_outcome = tfKeteranganOutcome.getText();
         String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
         
-        Outcome Out = submitOutcome(jml_outcome, ket_outcome, tgl_outcome);
+        OutcomeController outC = new OutcomeController();
+        try {
+            outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome));
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btnSubmitOutcomeActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed

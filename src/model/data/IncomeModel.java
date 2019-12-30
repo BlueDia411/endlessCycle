@@ -75,4 +75,13 @@ public class IncomeModel {
             
         }
     }
+     
+     public int saldoAkhir(){
+         Connection con = DatabaseUtilities.getConnection();
+         try {
+             PreparedStatement stat = con.prepareStatement("SELECT sum(jml_income) FROM income");
+             return stat.executeQuery();
+         } catch (Exception e) {
+         }
+     }
 }
