@@ -67,11 +67,11 @@ public class Income {
     public void setTgl_income(String tgl_income) {
         this.tgl_income = tgl_income;
     }
-    
+
     public void setCode_income(int code_income) {
         this.code_income = code_income;
     }
-    
+
     public int getCode_income() {
         return code_income;
     }

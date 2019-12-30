@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.pojo.Income;
 
@@ -22,16 +23,17 @@ import model.pojo.Income;
  * @author BlueDia
  */
 public class TblIncomeFrame extends javax.swing.JFrame {
-    
+
     IncomeController conn = new IncomeController();
     private DefaultTableModel model;
-    
+
     public TblIncomeFrame() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         populateDataToTable();
+        saldoAkhirPemasukan();
     }
-    
+
     public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblIncome.getModel();
         List<Income> inco = conn.loadIncome();
@@ -45,7 +47,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-    
+
     public void refreshTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
         model.setRowCount(0);
@@ -81,6 +83,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnUbahIncome = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         tfTanggalIncome = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -231,6 +234,13 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,23 +249,26 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfJumlahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                    .addComponent(tfKeteranganIncome)
-                    .addComponent(tfTanggalIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUbahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSubmitIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfJumlahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(tfKeteranganIncome)
+                            .addComponent(tfTanggalIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 98, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUbahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSubmitIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -265,14 +278,15 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5))
                     .addComponent(tfTanggalIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -280,9 +294,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfKeteranganIncome)
                         .addComponent(btnSubmitIncome)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUbahIncome)
-                .addGap(42, 42, 42)
+                .addGap(10, 10, 10)
+                .addComponent(btnHapus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +308,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomeFrame().setVisible(true);
+        try {
+            new HomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
@@ -314,7 +334,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         int jml_income = Integer.parseInt(tfJumlahIncome.getText());
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
-        
+
         IncomeController incC = new IncomeController();
         try {
             incC.insert(new Income(jml_income, ket_income, tgl_income));
@@ -335,7 +355,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         int jml_income = Integer.parseInt(tfJumlahIncome.getText());
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
-        
+
         IncomeController incC = new IncomeController();
         try {
             incC.update(new Income(jml_income, ket_income, tgl_income));
@@ -345,6 +365,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahIncomeActionPerformed
 
     private void tblIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIncomeMouseClicked
+
         try {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
         int selectedIndex = tblIncome.getSelectedRow();
@@ -355,8 +376,33 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 3).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }                                      
+
     }//GEN-LAST:event_tblIncomeMouseClicked
-    }
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        int status = 0;
+        
+           try{
+            DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
+            status = conn.delete(new Income(Integer.parseInt(tfJumlahIncome.getText()) ,
+                    String.valueOf(tfTanggalIncome.getDate()), 
+                    tfKeteranganIncome.getText()));
+            refreshTable();
+        }catch (SQLException ex){
+          Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null , ex);
+//            System.err.println("Gsgsl Hapus");
+        }
+        if(status == 1){
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus");
+        } else {
+            JOptionPane.showMessageDialog(this, "Data Gagal Dihapus");
+        }
+        
+        
+    }//GEN-LAST:event_btnHapusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,7 +446,18 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }
     
 
+    public void saldoAkhirPemasukan() throws SQLException {
+        List<Income> inc = conn.loadIncome();
+        int ina = 0;
+        for (Income incC : inc) {
+            ina += incC.getJml_income();
+        }
+        lblTotalIncome.setText("Rp." + String.valueOf(ina));
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSubmitIncome;
     private javax.swing.JButton btnUbahIncome;
     private javax.swing.JButton homeBtn;

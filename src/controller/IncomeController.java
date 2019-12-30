@@ -5,15 +5,13 @@
  */
 package controller;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import model.data.IncomeModel;
 import model.pojo.Income;
 
-/**
- *
- * @author BlueDia
- */
+
 public class IncomeController {
 
     public List<Income> loadIncome() throws SQLException {
@@ -29,6 +27,11 @@ public class IncomeController {
     public int update(Income income) throws SQLException {
         IncomeModel model = new IncomeModel();
         return model.update(income);
+    }
+
+    public int delete(Income income) throws SQLException{
+        IncomeModel model = new IncomeModel();
+        return model.delete(income);
     }
 
 }
