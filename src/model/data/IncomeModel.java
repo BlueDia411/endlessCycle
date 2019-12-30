@@ -33,6 +33,7 @@ public class IncomeModel {
             incList = new ArrayList<>();
             while (rs.next()) {
                 Income inc = new Income();
+                inc.setCode_income(Integer.valueOf(rs.getString("code_income")));
                 inc.setJml_income(Integer.valueOf(rs.getString("jml_income")));
                 inc.setKet_income(rs.getString("ket_income"));
                 inc.setTgl_income(rs.getString("tgl_income"));
@@ -83,7 +84,7 @@ public class IncomeModel {
      public int delete(Income inc) throws SQLException{
          Connection con = DatabaseUtilities.getConnection();
           try{
-          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE code_income ='"  + inc.getCode_income() + "'");
+          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE jml_income ='"  + inc.getJml_income()+ "'");
           return stat.executeUpdate();
      
           }finally{

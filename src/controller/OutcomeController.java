@@ -7,7 +7,9 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import model.data.IncomeModel;
 import model.data.OutcomeModel;
+import model.pojo.Income;
 import model.pojo.Outcome;
 
 /**
@@ -25,5 +27,12 @@ public class OutcomeController {
         OutcomeModel model = new OutcomeModel();
         return model.save(outcome);
     }
+    
+   public static int delete(Outcome outcome) throws SQLException{
+        OutcomeModel model = new OutcomeModel();
+        return model.delete(outcome);
+    }
+
+    
     
 }
