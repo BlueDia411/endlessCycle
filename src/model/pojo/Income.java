@@ -28,6 +28,10 @@ public class Income {
     public int getJml_income() {
         return jml_income;
     }
+    
+    public void setKode_Income(int code_income) {
+        this.code_income = code_income;
+    }
 
     /**
      * @param jml_income the jml_income to set

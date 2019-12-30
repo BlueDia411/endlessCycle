@@ -30,6 +30,7 @@ public class IncomeModel {
             incList = new ArrayList<>();
             while (rs.next()) {
                 Income inc = new Income();
+                inc.setCode_income(Integer.valueOf(rs.getString("code_income")));
                 inc.setJml_income(Integer.valueOf(rs.getString("jml_income")));
                 inc.setKet_income(rs.getString("ket_income"));
                 inc.setTgl_income(rs.getString("tgl_income"));

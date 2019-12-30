@@ -35,11 +35,12 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         List<Income> inco = conn.loadIncome();
         int i = 1;
         for (Income income : inco) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = i++;
-            row[1] = income.getTgl_income();
-            row[2] = income.getJml_income();
-            row[3] = income.getKet_income();
+            row[2] = income.getTgl_income();
+            row[1] = income.getCode_income();
+            row[3] = income.getJml_income();
+            row[4] = income.getKet_income();
             model.addRow(row);
         }
     }
@@ -99,7 +100,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Tanggal", "Jumlah", "Keterangan"
+                "No", "Kode Transaksi", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
         tblIncome.addMouseListener(new java.awt.event.MouseAdapter() {
