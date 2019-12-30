@@ -7,6 +7,8 @@ package view;
 
 import controller.IncomeController;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +37,14 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }
 
     public void populateDataToTable() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         model = (DefaultTableModel) tblIncome.getModel();
         List<Income> inco = conn.loadIncome();
         int i = 1;
@@ -43,7 +53,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             row[0] = i++;
             row[2] = income.getTgl_income();
             row[1] = income.getCode_income();
-            row[3] = income.getJml_income();
+            row[3] = kursIndo.format(income.getJml_income());
             row[4] = income.getKet_income();
             model.addRow(row);
         }
@@ -330,10 +340,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_outcomeBtnActionPerformed
 
     private void btnSubmitIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitIncomeActionPerformed
-     if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
-        
-        int status = 0;
-   
+        if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
+
+            int status = 0;
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             int jml_income = Integer.parseInt(tfJumlahIncome.getText());
             String ket_income = tfKeteranganIncome.getText();
@@ -347,7 +357,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data income berhasil ditambahkan");
             } else {
                 JOptionPane.showMessageDialog(this, "Data income gagal ditambahkan");
@@ -363,10 +373,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void btnUbahIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahIncomeActionPerformed
-       if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
-        
-        int status = 0;
-   
+        if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
+
+            int status = 0;
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             int jml_income = Integer.parseInt(tfJumlahIncome.getText());
             String ket_income = tfKeteranganIncome.getText();
@@ -380,7 +390,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data income berhasil diubah");
             } else {
                 JOptionPane.showMessageDialog(this, "Data income gagal diubah");
@@ -393,48 +403,48 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     private void tblIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIncomeMouseClicked
 
         try {
-        DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
-        int selectedIndex = tblIncome.getSelectedRow();
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 2));
-        tfTanggalIncome.setDate(date);
-        tfCodeIncome.setText(model.getValueAt(selectedIndex, 1).toString());
-        tfJumlahIncome.setText(model.getValueAt(selectedIndex, 3).toString());
-        tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 4).toString());
+            DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
+            int selectedIndex = tblIncome.getSelectedRow();
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) model.getValueAt(selectedIndex, 2));
+            tfTanggalIncome.setDate(date);
+            tfCodeIncome.setText(model.getValueAt(selectedIndex, 1).toString());
+            tfJumlahIncome.setText(model.getValueAt(selectedIndex, 3).toString());
+            tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 4).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
-    }                                      
+        }
 
     }//GEN-LAST:event_tblIncomeMouseClicked
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-       if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {  
+        if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
             int status = 0;
 
-               try{
+            try {
                 DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
-                status = conn.delete(new Income(Integer.parseInt(tfJumlahIncome.getText()) ,
-                        String.valueOf(tfTanggalIncome.getDate()), 
+                status = conn.delete(new Income(Integer.parseInt(tfJumlahIncome.getText()),
+                        String.valueOf(tfTanggalIncome.getDate()),
                         tfKeteranganIncome.getText(), Integer.parseInt(tfCodeIncome.getText())));
                 refreshTable();
-            }catch (SQLException ex){
-              Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null , ex);
-    //            System.err.println("Gsgsl Hapus");
+            } catch (SQLException ex) {
+                Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                //            System.err.println("Gsgsl Hapus");
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data income berhasil di hapus");
             } else {
                 JOptionPane.showMessageDialog(this, "Data income gagal dihapus");
             }
-         } else {
+        } else {
             JOptionPane.showMessageDialog(null, "Pilih data income yang ingin dihapus!");
         }
-        
+
     }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
      */
-        public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -472,15 +482,22 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
     }
-    
 
     public void saldoAkhirPemasukan() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         List<Income> inc = conn.loadIncome();
         int ina = 0;
         for (Income incC : inc) {
             ina += incC.getJml_income();
         }
-        lblTotalIncome.setText("Rp." + String.valueOf(ina));
+        lblTotalIncome.setText(kursIndo.format(ina));
     }
 
 

@@ -8,6 +8,8 @@ package view;
 import controller.IncomeController;
 import controller.OutcomeController;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -410,24 +412,48 @@ public class HomeFrame extends javax.swing.JFrame {
     }
 
     public void saldoAkhirPemasukan() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         List<Income> inc = conn.loadIncome();
         int ina = 0;
         for (Income incC : inc) {
             ina += incC.getJml_income();
         }
-        lblSaldoPemasukan.setText("Rp." + String.valueOf(ina));
+        lblSaldoPemasukan.setText(kursIndo.format(ina));
     }
 
     public void saldoAkhirPengeluaran() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         List<Outcome> ouc = conns.loadOutcome();
         int ina = 0;
         for (Outcome outc : ouc) {
             ina += outc.getJml_outcome();
         }
-        lblSaldoPengeluaran.setText("Rp." + String.valueOf(ina));
+        lblSaldoPengeluaran.setText(kursIndo.format(ina));
     }
 
     public void saldoAkhir() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         List<Outcome> ouc = conns.loadOutcome();
         int ina = 0;
         for (Outcome outc : ouc) {
@@ -438,8 +464,8 @@ public class HomeFrame extends javax.swing.JFrame {
         for (Income incC : inc) {
             inb += incC.getJml_income();
         }
-        int ind = inb-ina;
-        lblSaldoTotal.setText("Rp."+String.valueOf(ind));
+        int ind = inb - ina;
+        lblSaldoTotal.setText(kursIndo.format(ind));
 
     }
 

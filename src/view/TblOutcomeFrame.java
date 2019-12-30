@@ -7,6 +7,8 @@ package view;
 
 import controller.OutcomeController;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,13 +20,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.pojo.Outcome;
 
-
 /**
  *
  * @author BlueDia
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
-    
+
     OutcomeController conn = new OutcomeController();
     private DefaultTableModel model;
 
@@ -39,6 +40,14 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }
 
     public void populateDataToTable() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         model = (DefaultTableModel) tblOutcome.getModel();
         List<Outcome> ouc = conn.loadOutcome();
         int i = 1;
@@ -47,7 +56,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             row[0] = i++;
             row[1] = oc.getCode_outcome();
             row[2] = oc.getTgl_outcome();
-            row[3] = oc.getJml_outcome();
+            row[3] = kursIndo.format(oc.getJml_outcome());
             row[4] = oc.getKet_outcome();
             model.addRow(row);
         }
@@ -409,9 +418,9 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
     private void btnSubmitOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitOutcomeActionPerformed
         if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {
-        
+
             int status = 0;
-   
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
             String ket_outcome = tfKeteranganOutcome.getText();
@@ -425,7 +434,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data outcome berhasil ditambahkan");
             } else {
                 JOptionPane.showMessageDialog(this, "Data outcome gagal ditambahkan");
@@ -443,34 +452,34 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {  
+        if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {
             int status = 0;
 
-               try{
+            try {
                 DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
-                status = conn.delete(new Outcome(Integer.parseInt(tfJumlahOutcome.getText()) ,
-                        String.valueOf(tfTanggalOutcome.getDate()), 
+                status = conn.delete(new Outcome(Integer.parseInt(tfJumlahOutcome.getText()),
+                        String.valueOf(tfTanggalOutcome.getDate()),
                         tfKeteranganOutcome.getText(), Integer.parseInt(tfCodeOutcome.getText())));
                 refreshTable();
-            }catch (SQLException ex){
-              Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null , ex);
-    //            System.err.println("Gsgsl Hapus");
+            } catch (SQLException ex) {
+                Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                //            System.err.println("Gsgsl Hapus");
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data outcome berhasil di hapus");
             } else {
                 JOptionPane.showMessageDialog(this, "Data outcome gagal dihapus");
             }
-         } else {
+        } else {
             JOptionPane.showMessageDialog(null, "Pilih data outcome yang ingin dihapus!");
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void tblOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOutcomeMouseClicked
-         try {
+        try {
             DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
             int selectedIndex = tblOutcome.getSelectedRow();
-            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 2));
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) model.getValueAt(selectedIndex, 2));
             tfTanggalOutcome.setDate(date);
             tfCodeOutcome.setText(model.getValueAt(selectedIndex, 1).toString());
             tfJumlahOutcome.setText(model.getValueAt(selectedIndex, 3).toString());
@@ -482,9 +491,9 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
     private void btnUbahOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahOutcomeActionPerformed
         if (!(tfJumlahOutcome.getText().equals("")) || !(tfCodeOutcome.getText().equals("")) || !(tfKeteranganOutcome.getText().equals(""))) {
-        
+
             int status = 0;
-   
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
             String ket_outcome = tfKeteranganOutcome.getText();
@@ -498,7 +507,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(status == 1){
+            if (status == 1) {
                 JOptionPane.showMessageDialog(this, "Data outcome berhasil diubah");
             } else {
                 JOptionPane.showMessageDialog(this, "Data outcome gagal diubah");
@@ -551,12 +560,20 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }
 
     public void saldoAkhirPengeluaran() throws SQLException {
+        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndo.setDecimalFormatSymbols(formatRp);
         List<Outcome> ouc = conn.loadOutcome();
         int ina = 0;
         for (Outcome outc : ouc) {
             ina += outc.getJml_outcome();
         }
-        lblTotalOutcome.setText("Rp." + String.valueOf(ina));
+        lblTotalOutcome.setText(kursIndo.format(ina));
     }
 
 
