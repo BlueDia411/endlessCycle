@@ -7,12 +7,16 @@ package view;
 
 import controller.OutcomeController;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.pojo.Income;
 import model.pojo.Outcome;
 
 /**
@@ -31,6 +35,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         populateDataToTable();
+        saldoAkhirPengeluaran();
     }
 
     public void populateDataToTable() throws SQLException {
@@ -85,6 +90,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         tfTanggalOutcome = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         btnSubmitOutcome = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -140,6 +146,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                 "No", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
+        tblOutcome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOutcomeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblOutcome);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -262,6 +273,13 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,7 +293,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
@@ -286,7 +304,9 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                             .addComponent(tfKeteranganOutcome)
                             .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSubmitOutcome)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSubmitOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -311,7 +331,9 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfKeteranganOutcome)
                         .addComponent(btnSubmitOutcome)))
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnHapus)
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -334,7 +356,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_outcomeBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomeFrame().setVisible(true);
+        try {
+            new HomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
@@ -347,7 +373,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
         String ket_outcome = tfKeteranganOutcome.getText();
         String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
-        
+
         OutcomeController outC = new OutcomeController();
         try {
             outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome));
@@ -363,6 +389,41 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+         int status = 0;
+        
+           try{
+            DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
+            status = conn.delete(new Outcome(Integer.parseInt(tfJumlahOutcome.getText()) ,
+                    String.valueOf(tfTanggalOutcome.getDate()), 
+                    tfKeteranganOutcome.getText()));
+            refreshTable();
+        }catch (SQLException ex){
+          Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null , ex);
+//            System.err.println("Gsgsl Hapus");
+        }
+        if(status == 1){
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Hapus");
+        } else {
+            JOptionPane.showMessageDialog(this, "Data Gagal Dihapus");
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void tblOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOutcomeMouseClicked
+         try {
+            DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
+            int seclectedIndex = tblOutcome.getSelectedRow();
+            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(seclectedIndex, 1));
+            tfTanggalOutcome.setDate(date);
+            
+            
+            tfJumlahOutcome.setText(model.getValueAt(seclectedIndex, 2).toString());
+            tfKeteranganOutcome.setText(model.getValueAt(seclectedIndex, 3).toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tblOutcomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -406,7 +467,18 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         });
     }
 
+    public void saldoAkhirPengeluaran() throws SQLException {
+        List<Outcome> ouc = conn.loadOutcome();
+        int ina = 0;
+        for (Outcome outc : ouc) {
+            ina += outc.getJml_outcome();
+        }
+        lblTotalOutcome.setText("Rp." + String.valueOf(ina));
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSubmitOutcome;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton incomeBtn;

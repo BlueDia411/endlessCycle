@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.pojo.Income;
 import model.pojo.Outcome;
 import utilities.DatabaseUtilities;
 
@@ -59,4 +60,17 @@ public class OutcomeModel {
             }
         }
     }
+    
+    public int delete(Outcome ouc) throws SQLException{
+         Connection con = DatabaseUtilities.getConnection();
+          try{
+          PreparedStatement stat = con.prepareStatement("DELETE FROM outcome WHERE jml_outcome ='"  + ouc.getJml_outcome()+ "'");
+          return stat.executeUpdate();
+     
+          }finally{
+              if(con != null){
+                  con.close();
+              }
+          }
+     }
 }

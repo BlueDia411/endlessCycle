@@ -8,6 +8,9 @@ package model.pojo;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +24,7 @@ public class Income {
     private int jml_income;
     private String ket_income;
     private String tgl_income;
+
 
     /**
      * @return the jml_income
@@ -67,11 +71,11 @@ public class Income {
     public void setTgl_income(String tgl_income) {
         this.tgl_income = tgl_income;
     }
-    
+
     public void setCode_income(int code_income) {
         this.code_income = code_income;
     }
-    
+
     public int getCode_income() {
         return code_income;
     }

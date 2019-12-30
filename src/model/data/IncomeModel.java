@@ -6,12 +6,15 @@
 package model.data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import model.pojo.Income;
 import utilities.DatabaseUtilities;
 
@@ -60,29 +63,34 @@ public class IncomeModel {
             }
         }
     }
-     public int update(Income inc) throws SQLException {
-         Connection con = DatabaseUtilities.getConnection();
-        try{
+
+    public int update(Income inc) throws SQLException {
+        Connection con = DatabaseUtilities.getConnection();
+        try {
             PreparedStatement stat = con.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE income.code_income = ?");
             stat.setInt(1, inc.getJml_income());
             stat.setString(2, inc.getKet_income());
             stat.setString(3, inc.getTgl_income());
             stat.setInt(4, inc.getCode_income());
             return stat.executeUpdate();
-        }finally{
-            if (con !=null){
+        } finally {
+            if (con != null) {
                 con.close();
             }
-            
+
         }
     }
-     
-     public int saldoAkhir(){
+
+     public int delete(Income inc) throws SQLException{
          Connection con = DatabaseUtilities.getConnection();
-         try {
-             PreparedStatement stat = con.prepareStatement("SELECT sum(jml_income) FROM income");
-             return stat.executeQuery();
-         } catch (Exception e) {
-         }
+          try{
+          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE jml_income ='"  + inc.getJml_income()+ "'");
+          return stat.executeUpdate();
+     
+          }finally{
+              if(con != null){
+                  con.close();
+              }
+          }
      }
 }

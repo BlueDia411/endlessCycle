@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/model/pojo/Income.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/controller/OutcomeController.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/utilities/DatabaseUtilities.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/controller/IncomeController.java</file>
+            <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/view/TblIncomeFrame.java</file>
             <file>file:/C:/Users/BlueDia/Documents/NetBeansProjects/PSI_Tubes/src/model/data/IncomeModel.java</file>
         </group>
     </open-files>
