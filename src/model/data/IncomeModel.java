@@ -81,7 +81,7 @@ public class IncomeModel {
      public int delete(Income inc) throws SQLException{
          Connection con = DatabaseUtilities.getConnection();
           try{
-          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE code_income ='"  + inc.getCode_income() + "'");
+          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE jml_income ='"  + inc.getJml_income()+ "'");
           return stat.executeUpdate();
      
           }finally{

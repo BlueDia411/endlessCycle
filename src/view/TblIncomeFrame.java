@@ -382,7 +382,6 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tblIncomeMouseClicked
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
         int status = 0;
         
            try{
