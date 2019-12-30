@@ -187,9 +187,9 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 .addComponent(homeBtn)
                 .addGap(48, 48, 48)
                 .addComponent(incomeBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(outcomeBtn)
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
