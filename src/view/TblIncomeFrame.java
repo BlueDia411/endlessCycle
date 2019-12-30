@@ -23,16 +23,17 @@ import model.pojo.Income;
  * @author BlueDia
  */
 public class TblIncomeFrame extends javax.swing.JFrame {
-    
+
     IncomeController conn = new IncomeController();
     private DefaultTableModel model;
-    
+
     public TblIncomeFrame() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         populateDataToTable();
+        saldoAkhirPemasukan();
     }
-    
+
     public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblIncome.getModel();
         List<Income> inco = conn.loadIncome();
@@ -46,7 +47,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-    
+
     public void refreshTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
         model.setRowCount(0);
@@ -306,7 +307,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomeFrame().setVisible(true);
+        try {
+            new HomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
@@ -328,7 +333,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         int jml_income = Integer.parseInt(tfJumlahIncome.getText());
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
-        
+
         IncomeController incC = new IncomeController();
         try {
             incC.insert(new Income(jml_income, ket_income, tgl_income));
@@ -349,7 +354,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         int jml_income = Integer.parseInt(tfJumlahIncome.getText());
         String ket_income = tfKeteranganIncome.getText();
         String tgl_income = sdf.format(tfTanggalIncome.getDate());
-        
+
         IncomeController incC = new IncomeController();
         try {
             incC.update(new Income(jml_income, ket_income, tgl_income));
@@ -359,6 +364,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahIncomeActionPerformed
 
     private void tblIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIncomeMouseClicked
+
        try {
             DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
             int seclectedIndex = tblIncome.getSelectedRow();
@@ -372,6 +378,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+
     }//GEN-LAST:event_tblIncomeMouseClicked
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
@@ -436,6 +443,16 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
     }
+
+    public void saldoAkhirPemasukan() throws SQLException {
+        List<Income> inc = conn.loadIncome();
+        int ina = 0;
+        for (Income incC : inc) {
+            ina += incC.getJml_income();
+        }
+        lblTotalIncome.setText("Rp." + String.valueOf(ina));
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;

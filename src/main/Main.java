@@ -6,6 +6,7 @@
 package main;
 
 import controller.IncomeController;
+import java.sql.SQLException;
 import view.HomeFrame;
 
 /**
@@ -13,7 +14,7 @@ import view.HomeFrame;
  * @author BlueDia
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         new HomeFrame().setVisible(true);
         
     }
