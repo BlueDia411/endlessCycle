@@ -21,9 +21,9 @@ public class OutcomeController {
         return model.loadOutcomes();
     }
     
-    public static Outcome submitOutcome(int jml_outcome, String ket_outcome, String tgl_outcome){
-        Outcome Out = new Outcome(jml_outcome, ket_outcome, tgl_outcome);
-        return Out;
+    public static int insert(Outcome outcome) throws SQLException{
+        OutcomeModel model = new OutcomeModel();
+        return model.save(outcome);
     }
     
 }

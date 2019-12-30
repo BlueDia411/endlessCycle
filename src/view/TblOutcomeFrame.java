@@ -6,7 +6,6 @@
 package view;
 
 import controller.OutcomeController;
-import static controller.OutcomeController.submitOutcome;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,7 +20,7 @@ import model.pojo.Outcome;
  * @author BlueDia
  */
 public class TblOutcomeFrame extends javax.swing.JFrame {
-    
+
     OutcomeController conn = new OutcomeController();
     private DefaultTableModel model;
 
@@ -33,7 +32,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         populateDataToTable();
     }
-    
+
     public void populateDataToTable() throws SQLException {
         model = (DefaultTableModel) tblOutcome.getModel();
         List<Outcome> ouc = conn.loadOutcome();
@@ -47,7 +46,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-    
+
     public void refreshTable() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
         model.setRowCount(0);
@@ -181,11 +180,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeBtn)
-                .addGap(30, 30, 30)
-                .addComponent(incomeBtn)
-                .addGap(38, 38, 38)
-                .addComponent(outcomeBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(incomeBtn)
+                .addGap(39, 39, 39)
+                .addComponent(outcomeBtn)
+                .addGap(49, 49, 49)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
@@ -294,7 +293,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,11 +311,10 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfKeteranganOutcome)
                         .addComponent(btnSubmitOutcome)))
-                .addGap(77, 77, 77)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -350,7 +348,15 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         String ket_outcome = tfKeteranganOutcome.getText();
         String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
         
-        Outcome Out = submitOutcome(jml_outcome, ket_outcome, tgl_outcome);
+        OutcomeController outC = new OutcomeController();
+        try {
+            outC.insert(new Outcome(jml_outcome, ket_outcome, tgl_outcome));
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btnSubmitOutcomeActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
