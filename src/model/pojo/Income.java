@@ -22,6 +22,7 @@ public class Income {
     private String ket_income;
     private String tgl_income;
 
+
     /**
      * @return the jml_income
      */

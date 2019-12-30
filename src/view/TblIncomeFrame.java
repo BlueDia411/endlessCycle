@@ -7,7 +7,9 @@ package view;
 
 import controller.IncomeController;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -345,18 +347,22 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUbahIncomeActionPerformed
 
     private void tblIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIncomeMouseClicked
+        try {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         int selectedIndex = tblIncome.getSelectedRow();
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 1));
+        tfTanggalIncome.setDate(date);
         
         tfJumlahIncome.setText(model.getValueAt(selectedIndex, 2).toString());
         tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 3).toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
     }//GEN-LAST:event_tblIncomeMouseClicked
-
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -370,14 +376,16 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TblIncomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TblOutcomeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -385,13 +393,14 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TblIncomeFrame().setVisible(true);
+                    new TblOutcomeFrame().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmitIncome;

@@ -26,7 +26,7 @@ public class IncomeController {
         return model.save(income);
     }
     
-    public int update (Income income) throws SQLException {
+    public int update(Income income) throws SQLException {
         IncomeModel model = new IncomeModel();
         return model.update(income);
     }
