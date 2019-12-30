@@ -290,7 +290,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomeFrame().setVisible(true);
+        try {
+            new HomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 

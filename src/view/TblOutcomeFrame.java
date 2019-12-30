@@ -334,7 +334,11 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_outcomeBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        new HomeFrame().setVisible(true);
+        try {
+            new HomeFrame().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TblOutcomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
