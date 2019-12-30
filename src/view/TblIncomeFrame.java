@@ -370,11 +370,11 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         try {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
         int selectedIndex = tblIncome.getSelectedRow();
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 1));
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 2));
         tfTanggalIncome.setDate(date);
         
-        tfJumlahIncome.setText(model.getValueAt(selectedIndex, 2).toString());
-        tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 3).toString());
+        tfJumlahIncome.setText(model.getValueAt(selectedIndex, 3).toString());
+        tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 4).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
     }                                      

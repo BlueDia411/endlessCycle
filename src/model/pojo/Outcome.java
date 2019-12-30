@@ -16,6 +16,9 @@ import java.util.logging.Logger;
  * @author BlueDia
  */
 public class Outcome {
+
+   
+    private int code_outcome;
     private int jml_outcome;
     private String ket_outcome;
     private String tgl_outcome;
@@ -26,7 +29,13 @@ public class Outcome {
     public int getJml_outcome() {
         return jml_outcome;
     }
+     public int getCode_outcome() {
+        return code_outcome;
+    }
 
+    public void setCode_outcome(int code_outcome) {
+        this.code_outcome = code_outcome;
+    }
     /**
      * @param jml_outcome the jml_outcome to set
      */

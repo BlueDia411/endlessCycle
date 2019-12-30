@@ -32,6 +32,7 @@ public class OutcomeModel {
             while (rs.next()) {
                 Outcome ouc = new Outcome();
                 ouc.setJml_outcome(Integer.valueOf(rs.getString("jml_outcome")));
+                ouc.setCode_outcome(Integer.valueOf(rs.getString("code_outcome")));
                 ouc.setKet_outcome(rs.getString("ket_outcome"));
                 ouc.setTgl_outcome(rs.getString("tgl_outcome"));
 

@@ -43,11 +43,12 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         List<Outcome> ouc = conn.loadOutcome();
         int i = 1;
         for (Outcome oc : ouc) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = i++;
-            row[1] = oc.getTgl_outcome();
-            row[2] = oc.getJml_outcome();
-            row[3] = oc.getKet_outcome();
+            row[1] = oc.getCode_outcome();
+            row[2] = oc.getTgl_outcome();
+            row[3] = oc.getJml_outcome();
+            row[4] = oc.getKet_outcome();
             model.addRow(row);
         }
     }
@@ -143,7 +144,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Tanggal", "Jumlah", "Keterangan"
+                "No", "Title 2", "Tanggal", "Jumlah", "Keterangan"
             }
         ));
         tblOutcome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -414,12 +415,12 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
          try {
             DefaultTableModel model = (DefaultTableModel) tblOutcome.getModel();
             int seclectedIndex = tblOutcome.getSelectedRow();
-            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(seclectedIndex, 1));
+            Date date =  new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(seclectedIndex, 2));
             tfTanggalOutcome.setDate(date);
             
             
-            tfJumlahOutcome.setText(model.getValueAt(seclectedIndex, 2).toString());
-            tfKeteranganOutcome.setText(model.getValueAt(seclectedIndex, 3).toString());
+            tfJumlahOutcome.setText(model.getValueAt(seclectedIndex, 3).toString());
+            tfKeteranganOutcome.setText(model.getValueAt(seclectedIndex, 4).toString());
         } catch (ParseException ex) {
             Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
