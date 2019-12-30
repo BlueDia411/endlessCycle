@@ -76,12 +76,25 @@ public class IncomeModel {
         }
     }
      
-     public int saldoAkhir(){
+     public int delete(Income inc) throws SQLException{
+         Connection con = DatabaseUtilities.getConnection();
+          try{
+          PreparedStatement stat = con.prepareStatement("DELETE FROM income WHERE code_income ='"  + inc.getCode_income() + "'");
+          return stat.executeUpdate();
+     
+          }finally{
+              if(con != null){
+                  con.close();
+              }
+          }
+     }
+     public ResultSet saldoAkhir(){
          Connection con = DatabaseUtilities.getConnection();
          try {
              PreparedStatement stat = con.prepareStatement("SELECT sum(jml_income) FROM income");
              return stat.executeQuery();
          } catch (Exception e) {
          }
+        return 0;
      }
 }
