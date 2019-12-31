@@ -40,14 +40,14 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     }
 
     public void populateDataToTable() throws SQLException {
-        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        kursIndo.setDecimalFormatSymbols(formatRp);
+//        DecimalFormat kursIndo = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+//        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+//
+//        formatRp.setCurrencySymbol("Rp. ");
+//        formatRp.setMonetaryDecimalSeparator(',');
+//        formatRp.setGroupingSeparator('.');
+//
+//        kursIndo.setDecimalFormatSymbols(formatRp);
         model = (DefaultTableModel) tblOutcome.getModel();
         List<Outcome> ouc = conn.loadOutcome();
         int i = 1;
@@ -56,7 +56,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             row[0] = i++;
             row[1] = oc.getCode_outcome();
             row[2] = oc.getTgl_outcome();
-            row[3] = kursIndo.format(oc.getJml_outcome());
+            row[3] = oc.getJml_outcome();
             row[4] = oc.getKet_outcome();
             model.addRow(row);
         }
@@ -106,6 +106,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         tfTanggalOutcome = new com.toedter.calendar.JDateChooser();
         tfCodeOutcome = new javax.swing.JTextField();
         btnUbahOutcome = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -171,6 +172,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/home.png"))); // NOI18N
+        homeBtn.setText("Home");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
@@ -178,6 +180,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         });
 
         incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/input-50x50.png"))); // NOI18N
+        incomeBtn.setText("Pemasukan");
         incomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 incomeBtnActionPerformed(evt);
@@ -185,6 +188,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         });
 
         outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/output-50x50.png"))); // NOI18N
+        outcomeBtn.setText("Pengeluaran");
         outcomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 outcomeBtnActionPerformed(evt);
@@ -192,6 +196,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
         });
 
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/logout-50x50.png"))); // NOI18N
+        logoutBtn.setText("Keluar");
         logoutBtn.setToolTipText("");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,19 +213,19 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
                 .addComponent(homeBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(incomeBtn)
-                .addGap(39, 39, 39)
+                .addGap(34, 34, 34)
                 .addComponent(outcomeBtn)
-                .addGap(49, 49, 49)
+                .addGap(33, 33, 33)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(incomeBtn)
-            .addComponent(outcomeBtn)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(homeBtn)
-                .addComponent(logoutBtn))
+                .addComponent(logoutBtn)
+                .addComponent(outcomeBtn))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -281,6 +286,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Tambah Outcome");
 
+        btnSubmitOutcome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/add25x25.png"))); // NOI18N
         btnSubmitOutcome.setText("+ Tambah");
         btnSubmitOutcome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +294,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/rubbish-bin-delete-button25x25.png"))); // NOI18N
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +304,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
 
         tfCodeOutcome.setBackground(new java.awt.Color(240, 240, 240));
 
+        btnUbahOutcome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assetsNetbean/pencil-edit-button25x25.png"))); // NOI18N
         btnUbahOutcome.setText("Ubah");
         btnUbahOutcome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,84 +312,84 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("ID :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSubmitOutcome)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUbahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel9)))
+                            .addComponent(jLabel7))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(btnSubmitOutcome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel6)))
-                                    .addComponent(jLabel7))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tfKeteranganOutcome)
-                                            .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnUbahOutcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnHapus)
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUbahOutcome)
+                            .addComponent(btnSubmitOutcome)
+                            .addComponent(btnHapus))
+                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmitOutcome)
-                    .addComponent(btnUbahOutcome)
-                    .addComponent(btnHapus))
-                .addGap(20, 20, 20)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfCodeOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(17, 17, 17))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(tfJumlahOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(tfTanggalOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(tfKeteranganOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -425,7 +433,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
             String ket_outcome = tfKeteranganOutcome.getText();
             String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
-            int code_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+            int code_outcome = Integer.parseInt(tfCodeOutcome.getText());
 
             OutcomeController outC = new OutcomeController();
             try {
@@ -498,7 +506,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
             int jml_outcome = Integer.parseInt(tfJumlahOutcome.getText());
             String ket_outcome = tfKeteranganOutcome.getText();
             String tgl_outcome = sdf.format(tfTanggalOutcome.getDate());
-            int code_outcome = Integer.parseInt(tfJumlahOutcome.getText());
+            int code_outcome = Integer.parseInt(tfCodeOutcome.getText());
 
             OutcomeController outC = new OutcomeController();
             try {
@@ -590,6 +598,7 @@ public class TblOutcomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

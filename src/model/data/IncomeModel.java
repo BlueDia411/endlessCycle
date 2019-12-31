@@ -65,7 +65,7 @@ public class IncomeModel {
     public int update(Income inc) throws SQLException {
         Connection conn = DatabaseUtilities.getConnection();
         try {
-            PreparedStatement stat = conn.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE code_income = ? ");
+            PreparedStatement stat = conn.prepareStatement("UPDATE income SET jml_income =?, ket_income =?, tgl_income =? WHERE code_income = ?");
             stat.setInt(1, inc.getJml_income());
             stat.setString(2, inc.getKet_income());
             stat.setDate(3, java.sql.Date.valueOf(inc.getTgl_income()));
