@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.pojo.Income;
+import model.data.IncomeModel;
 
 /**
  *
@@ -363,7 +364,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void btnUbahIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahIncomeActionPerformed
-       if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
+        if (!(tfJumlahIncome.getText().equals("")) || !(tfCodeIncome.getText().equals("")) || !(tfKeteranganIncome.getText().equals(""))) {
         
         int status = 0;
    
@@ -386,7 +387,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Data income gagal diubah");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Pilih data income yang ingin diubah!");
+            JOptionPane.showMessageDialog(null, "Masukan data income terlebih dahulu");
         }
     }//GEN-LAST:event_btnUbahIncomeActionPerformed
 
@@ -395,9 +396,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
         try {
         DefaultTableModel model = (DefaultTableModel) tblIncome.getModel();
         int selectedIndex = tblIncome.getSelectedRow();
+        tfCodeIncome.setText(model.getValueAt(selectedIndex, 1).toString());
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(selectedIndex, 2));
         tfTanggalIncome.setDate(date);
-        tfCodeIncome.setText(model.getValueAt(selectedIndex, 1).toString());
+        
         tfJumlahIncome.setText(model.getValueAt(selectedIndex, 3).toString());
         tfKeteranganIncome.setText(model.getValueAt(selectedIndex, 4).toString());
         } catch (ParseException ex) {

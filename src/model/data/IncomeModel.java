@@ -6,6 +6,7 @@
 package model.data;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.pojo.Income;
 import utilities.DatabaseUtilities;
-import java.sql.Date;
-
 /**
  *
  * @author BlueDia
@@ -65,7 +64,7 @@ public class IncomeModel {
     public int update(Income inc) throws SQLException {
         Connection conn = DatabaseUtilities.getConnection();
         try {
-            PreparedStatement stat = conn.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE code_income = ? ");
+            PreparedStatement stat = conn.prepareStatement("UPDATE income SET jml_income = ?, ket_income = ?, tgl_income = ? WHERE income.code_income = ?");
             stat.setInt(1, inc.getJml_income());
             stat.setString(2, inc.getKet_income());
             stat.setDate(3, java.sql.Date.valueOf(inc.getTgl_income()));
@@ -82,7 +81,7 @@ public class IncomeModel {
         public int delete(Income inc) throws SQLException {
          Connection conn = DatabaseUtilities.getConnection();
         try{
-            PreparedStatement stat = conn.prepareStatement("DELETE FROM Income WHERE code_income = ?");
+            PreparedStatement stat = conn.prepareStatement("DELETE FROM income WHERE code_income = ?");
             stat.setInt(1, inc.getCode_income());
             return stat.executeUpdate();
         }finally{
