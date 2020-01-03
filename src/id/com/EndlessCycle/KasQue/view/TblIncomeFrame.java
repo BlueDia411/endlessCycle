@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.view;
+package id.com.EndlessCycle.KasQue.view;
 
-import com.EndlessCycle.EndlessCycle.controller.IncomeController;
+import id.com.EndlessCycle.KasQue.controller.IncomeController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -24,8 +24,8 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import com.EndlessCycle.EndlessCycle.model.pojo.Income;
-import com.EndlessCycle.EndlessCycle.utilities.DatabaseUtilities;
+import id.com.EndlessCycle.KasQue.model.pojo.Income;
+import id.com.EndlessCycle.KasQue.utilities.DatabaseUtilities;
 
 
 /**
@@ -177,7 +177,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/home.png"))); // NOI18N
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/home.png"))); // NOI18N
         homeBtn.setText("Home");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,10 +185,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
 
-        incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/input-50x50.png"))); // NOI18N
+        incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/input-50x50.png"))); // NOI18N
         incomeBtn.setText("Pemasukan");
 
-        outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/output-50x50.png"))); // NOI18N
+        outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/output-50x50.png"))); // NOI18N
         outcomeBtn.setText("Pengeluaran");
         outcomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +196,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
 
-        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/logout-50x50.png"))); // NOI18N
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/logout-50x50.png"))); // NOI18N
         logoutBtn.setText("Keluar");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,26 +211,27 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(incomeBtn)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(outcomeBtn)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homeBtn)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeBtn)
+                .addComponent(incomeBtn))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(logoutBtn)
-                .addComponent(outcomeBtn)
-                .addComponent(incomeBtn))
+                .addComponent(outcomeBtn))
         );
 
         jLabel3.setText("Tambah Income");
 
-        btnSubmitIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/add25x25.png"))); // NOI18N
+        btnSubmitIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/add25x25.png"))); // NOI18N
         btnSubmitIncome.setText("Tambah");
         btnSubmitIncome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +245,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Keterangan :");
 
-        btnUbahIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/pencil-edit-button25x25.png"))); // NOI18N
+        btnUbahIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/pencil-edit-button25x25.png"))); // NOI18N
         btnUbahIncome.setText("Ubah");
         btnUbahIncome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +253,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             }
         });
 
-        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/rubbish-bin-delete-button25x25.png"))); // NOI18N
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/rubbish-bin-delete-button25x25.png"))); // NOI18N
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,6 +265,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
 
         jLabel7.setText("ID :");
 
+        btnReportIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/credit.png"))); // NOI18N
         btnReportIncome.setText("Report");
         btnReportIncome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,35 +281,32 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSubmitIncome))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfJumlahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(tfKeteranganIncome)
+                            .addComponent(tfCodeIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfTanggalIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSubmitIncome)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfJumlahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                                    .addComponent(tfKeteranganIncome)
-                                    .addComponent(tfCodeIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfTanggalIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUbahIncome, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                    .addComponent(btnReportIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHapus)
-                .addGap(34, 34, 34))
+                                .addComponent(btnUbahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnHapus))
+                            .addComponent(btnReportIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,32 +314,33 @@ public class TblIncomeFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(22, 22, 22)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCodeIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(tfCodeIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(btnReportIncome))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(tfTanggalIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfJumlahIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(tfTanggalIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(tfKeteranganIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnReportIncome)))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmitIncome)
-                    .addComponent(btnUbahIncome)
-                    .addComponent(btnHapus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                            .addComponent(tfKeteranganIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSubmitIncome)
+                            .addComponent(btnUbahIncome)
+                            .addComponent(btnHapus))
+                        .addGap(26, 26, 26)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -376,11 +376,10 @@ public class TblIncomeFrame extends javax.swing.JFrame {
             int jml_income = Integer.parseInt(tfJumlahIncome.getText());
             String ket_income = tfKeteranganIncome.getText();
             String tgl_income = sdf.format(tfTanggalIncome.getDate());
-            int code_income = Integer.parseInt(tfJumlahIncome.getText());
 
             IncomeController incC = new IncomeController();
             try {
-                status = incC.insert(new Income(jml_income, ket_income, tgl_income, code_income));
+                status = incC.insert(new Income(jml_income, ket_income, tgl_income));
                 refreshTable();
             } catch (SQLException ex) {
                 Logger.getLogger(TblIncomeFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -472,7 +471,7 @@ public class TblIncomeFrame extends javax.swing.JFrame {
     private void btnReportIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportIncomeActionPerformed
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "src/com/EndlessCycle/EndlessCycle/report/income_report.jasper", 
+                    "src/id/com/EndlessCycle/KasQue/report/income_report.jasper", 
                     null, 
                     DatabaseUtilities.getConnection());
           

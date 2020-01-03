@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.controller;
+package id.com.EndlessCycle.KasQue.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.EndlessCycle.EndlessCycle.model.data.IncomeModel;
-import com.EndlessCycle.EndlessCycle.model.pojo.Income;
+import id.com.EndlessCycle.KasQue.model.data.IncomeModel;
+import id.com.EndlessCycle.KasQue.model.pojo.Income;
 
 
 

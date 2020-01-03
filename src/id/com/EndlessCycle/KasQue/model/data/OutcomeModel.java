@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.model.data;
+package id.com.EndlessCycle.KasQue.model.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import com.EndlessCycle.EndlessCycle.model.pojo.Outcome;
-import com.EndlessCycle.EndlessCycle.utilities.DatabaseUtilities;
+import id.com.EndlessCycle.KasQue.model.pojo.Outcome;
+import id.com.EndlessCycle.KasQue.utilities.DatabaseUtilities;
 import java.sql.Date;
 
 

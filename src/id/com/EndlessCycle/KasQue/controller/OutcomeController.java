@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.controller;
+package id.com.EndlessCycle.KasQue.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.EndlessCycle.EndlessCycle.model.data.OutcomeModel;
-import com.EndlessCycle.EndlessCycle.model.pojo.Outcome;
+import id.com.EndlessCycle.KasQue.model.data.OutcomeModel;
+import id.com.EndlessCycle.KasQue.model.pojo.Outcome;
 
 
 /**
@@ -22,7 +22,7 @@ public class OutcomeController {
         return model.loadOutcomes();
     }
     
-    public static int insert(Outcome outcome) throws SQLException{
+    public int insert(Outcome outcome) throws SQLException{
         OutcomeModel model = new OutcomeModel();
         return model.save(outcome);
     }
@@ -32,7 +32,7 @@ public class OutcomeController {
         return model.update(outcome);
     }
     
-    public static int delete(Outcome outcome) throws SQLException{
+    public int delete(Outcome outcome) throws SQLException{
         OutcomeModel model = new OutcomeModel();
         return model.delete(outcome);
     }

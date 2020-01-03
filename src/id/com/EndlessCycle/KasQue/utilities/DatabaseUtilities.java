@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.utilities;
+package id.com.EndlessCycle.KasQue.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

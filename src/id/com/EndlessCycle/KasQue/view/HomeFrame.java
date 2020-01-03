@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.view;
+package id.com.EndlessCycle.KasQue.view;
 
-import com.EndlessCycle.EndlessCycle.controller.IncomeController;
-import com.EndlessCycle.EndlessCycle.controller.OutcomeController;
+import id.com.EndlessCycle.KasQue.controller.IncomeController;
+import id.com.EndlessCycle.KasQue.controller.OutcomeController;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import com.EndlessCycle.EndlessCycle.model.pojo.Income;
-import com.EndlessCycle.EndlessCycle.model.pojo.Outcome;
+import id.com.EndlessCycle.KasQue.model.pojo.Income;
+import id.com.EndlessCycle.KasQue.model.pojo.Outcome;
 
 /**
  *
@@ -90,7 +90,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/home.png"))); // NOI18N
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/home.png"))); // NOI18N
         homeBtn.setText("Home");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +98,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
-        incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/input-50x50.png"))); // NOI18N
+        incomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/input-50x50.png"))); // NOI18N
         incomeBtn.setText("Pemasukan");
         incomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
-        outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/output-50x50.png"))); // NOI18N
+        outcomeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/output-50x50.png"))); // NOI18N
         outcomeBtn.setText("Pengeluaran");
         outcomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
-        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/EndlessCycle/EndlessCycle/assetsNetbean/logout-50x50.png"))); // NOI18N
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/com/EndlessCycle/KasQue/assetsNetbean/logout-50x50.png"))); // NOI18N
         logoutBtn.setText("Exit");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,21 +129,22 @@ public class HomeFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(incomeBtn)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(outcomeBtn)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homeBtn)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeBtn)
+                .addComponent(incomeBtn))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(logoutBtn)
-                .addComponent(outcomeBtn)
-                .addComponent(incomeBtn))
+                .addComponent(outcomeBtn))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
@@ -291,7 +292,7 @@ public class HomeFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(btnOutcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -300,13 +301,13 @@ public class HomeFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(60, 60, 60)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +331,7 @@ public class HomeFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );

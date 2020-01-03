@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.model.pojo;
+package id.com.EndlessCycle.KasQue.model.pojo;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.EndlessCycle.EndlessCycle.model.pojo.Income;
+import id.com.EndlessCycle.KasQue.model.pojo.Income;
 
 /**
  *
@@ -33,6 +33,12 @@ public class Income {
     
      public Income(int jml_income,  String ket_income, String tgl_income, int code_income) {
         this.code_income = code_income; 
+        this.jml_income = jml_income;
+        this.ket_income = ket_income;
+        this.tgl_income = tgl_income;
+    }
+     
+     public Income(int jml_income,  String ket_income, String tgl_income) {
         this.jml_income = jml_income;
         this.ket_income = ket_income;
         this.tgl_income = tgl_income;

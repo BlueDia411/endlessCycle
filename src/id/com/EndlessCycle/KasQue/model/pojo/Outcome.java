@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.EndlessCycle.EndlessCycle.model.pojo;
+package id.com.EndlessCycle.KasQue.model.pojo;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -76,6 +76,12 @@ public class Outcome {
         this.ket_outcome = ket_outcome;
         this.tgl_outcome = tgl_outcome;
         this.code_outcome = code_outcome;
+    }
+    
+     public Outcome(int jml_outcome, String ket_outcome, String tgl_outcome){
+        this.jml_outcome = jml_outcome;
+        this.ket_outcome = ket_outcome;
+        this.tgl_outcome = tgl_outcome;
     }
     
     public Outcome() {
